@@ -1,0 +1,10 @@
+{
+  "handoffVersion": 1,
+  "project": "affidavit-support-network",
+  "updatedAt": "2026-05-30T15:17:29Z",
+  "latestReport": "latest.md",
+  "latestInstruction": "instructions/latest-from-chatgpt.md",
+  "sensitivity": "redacted",
+  "safeToShareWithChatGPT": true,
+  "notes": "No secrets, tokens, provider IDs, blob URLs, PDF bytes, or raw logs."
+}
