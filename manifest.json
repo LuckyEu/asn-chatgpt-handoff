@@ -1,9 +1,12 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-05-30T15:17:29Z",
+  "updatedAt": "2026-05-30T15:25:40Z",
   "latestReport": "latest.md",
+  "latestReportArchive": "reports/2026-05-30-0822-cloud-handoff-discipline.md",
   "latestInstruction": "instructions/latest-from-chatgpt.md",
+  "reportType": "cloud-handoff-discipline",
+  "sourceLocalPath": "C:\\Users\\lukoe\\Downloads\\asn-reports\\2026-05-30-0822-cloud-handoff-discipline.md",
   "sensitivity": "redacted",
   "safeToShareWithChatGPT": true,
   "notes": "No secrets, tokens, provider IDs, blob URLs, PDF bytes, or raw logs."
