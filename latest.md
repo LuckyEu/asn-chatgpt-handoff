@@ -1,38 +1,43 @@
-# Cloud handoff report discipline PR
+# PR #43 / PR #42 merge attempt — CI billing still blocked
 
-Date: 2026-05-30
-Repository: affidavit-support-network @ `C:\Users\lukoe\asn-deploy-stabilize`
-Branch / commit: `chore/cloud-handoff-report-discipline` @ `3d049695`
-PR: https://github.com/LuckyEu/affidavit-support-network/pull/43
+Date: 2026-05-30  
+Operator: Cursor Agent  
+Product repo: `LuckyEu/affidavit-support-network`  
+Handoff repo: `LuckyEu/asn-chatgpt-handoff`
 
-## A) Verdict
+## Verdict
 
-Product repo rules updated for local Downloads archive + optional cloud handoff via `LuckyEu/asn-chatgpt-handoff`. PR #43 opened.
+**Neither PR merged.** Required GitHub Actions checks still fail with billing/spending-limit annotation (jobs never start). Vercel previews pass on both PRs.
 
-## B) Changes
+## A) PR #43
 
-| File | Change |
-|------|--------|
-| `.cursorrules` | Extended OPERATOR REPORT FILE DISCIPLINE; added CLOUD HANDOFF section |
-| `.cursor/rules/operator-report-discipline.mdc` | Updated pointer |
-| `.cursor/rules/asn-chatgpt-handoff.mdc` | New pointer rule |
+- Open: https://github.com/LuckyEu/affidavit-support-network/pull/43
+- Diff: rules-only (`.cursorrules` + 2 `.cursor/rules/*.mdc`) — confirmed
+- Merge: blocked (Build and Test + Unit/Functional/Regression fail — billing)
 
-Key rules:
-- Local reports always → `C:\Users\lukoe\Downloads\asn-reports\`
-- Cloud publish only when operator requests → `C:\Users\lukoe\asn-chatgpt-handoff`
-- ChatGPT instructions require operator confirmation before execution
-- No `asn-bridge` folders in product repo
+## B) PR #42
 
-## C) Blockers
+- Open: https://github.com/LuckyEu/affidavit-support-network/pull/42
+- Scope: applicant confirm, applicant_intakes binding, self-case, DRAFT witnesses — confirmed
+- No migration, no email/invite send, no Stripe/Dropbox — confirmed
+- Merge: blocked (same billing failure)
 
-None.
+## C) CI
 
-## D) Safety confirmation
+Re-runs triggered; annotation unchanged: *"recent account payments have failed or your spending limit needs to be increased"*
 
-- Product code untouched
-- No production, migrations, invites, payments, or provider calls
-- Downloads/handoff content not staged in product repo
+## D) Production build
 
-## E) Next action
+`2396b41b` on `main` / `production` — unchanged (PR #41). PR #42 not deployed.
 
-Review/merge PR #43; then publish redacted reports to handoff repo when operator requests cloud handoff.
+## E) Safety
+
+All hard constraints honored. No bypass, no production writes, no deploy.
+
+## F) Next action
+
+1. Fix GitHub Actions billing in GitHub Settings.
+2. Re-run CI → squash merge PR #43 → PR #42.
+3. Preview smoke for PR #42 after merge.
+
+Full report: operator Downloads `2026-05-30-0923-pr43-pr42-ci-blocked-report.md`
