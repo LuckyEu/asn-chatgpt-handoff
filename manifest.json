@@ -1,12 +1,12 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-03T19:45:08Z",
+  "updatedAt": "2026-06-03T20:06:09Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-03-1206-prod-attorney-workspace-readonly-smoke.md",
+  "latestReportArchive": "reports/2026-06-03-1218-prod-lisa-approval-smoke.md",
   "latestInstruction": "instructions/latest-from-chatgpt.md",
-  "reportType": "prod-attorney-workspace-readonly-smoke",
-  "sourceLocalPath": "C:\\Users\\lukoe\\Downloads\\asn-reports\\2026-06-03-1206-prod-attorney-workspace-readonly-smoke.md",
+  "reportType": "prod-lisa-approval-smoke",
+  "sourceLocalPath": "C:\\Users\\lukoe\\Downloads\\asn-reports\\2026-06-03-1218-prod-lisa-approval-smoke.md",
   "sensitivity": "redacted",
   "safeToShareWithChatGPT": true,
   "notes": "No secrets, tokens, provider IDs, blob URLs, PDF bytes, or raw logs."
