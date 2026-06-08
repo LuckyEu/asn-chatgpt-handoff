@@ -1,13 +1,17 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-03T20:06:09Z",
+  "updatedAt": "2026-06-08T21:02:06Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-03-1218-prod-lisa-approval-smoke.md",
+  "latestReportArchive": "reports/2026-06-08-1339-bfm-demo-screenshot-video-pack.md",
+  "latestReportTitle": "BFM demo screenshot & video asset pack",
   "latestInstruction": "instructions/latest-from-chatgpt.md",
-  "reportType": "prod-lisa-approval-smoke",
-  "sourceLocalPath": "C:\\Users\\lukoe\\Downloads\\asn-reports\\2026-06-03-1218-prod-lisa-approval-smoke.md",
+  "reportType": "bfm-demo-screenshot-video-pack",
+  "sourceLocalPath": "C:\\Users\\lukoe\\Downloads\\asn-reports\\2026-06-08-1339-bfm-demo-screenshot-video-pack.md",
   "sensitivity": "redacted",
+  "safeToShare": true,
   "safeToShareWithChatGPT": true,
-  "notes": "No secrets, tokens, provider IDs, blob URLs, PDF bytes, or raw logs."
+  "artifactsPublished": false,
+  "artifactPolicy": "local-only",
+  "notes": "No secrets, tokens, provider IDs, blob URLs, PDF bytes, screenshots, or raw logs."
 }
