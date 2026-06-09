@@ -1,32 +1,26 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-09T19:10:00Z",
+  "updatedAt": "2026-06-09T19:47:00Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-09-1131-bfm-video-ppt-redesign-v3.md",
-  "latestReportTitle": "BFM video-PPT v3 — Brandbook redesign PASS",
-  "latestInstruction": "instructions/latest-from-chatgpt.md",
-  "reportType": "bfm-video-ppt-redesign-v3",
-  "sourceLocalPath": "operator Downloads — 2026-06-09-1131-bfm-video-ppt-redesign-v3.md",
-  "artifactPath": "artifacts/bfm-video-v3/",
+  "latestReportArchive": "reports/2026-06-09-1247-bfm-video-ppt-redesign-v4.md",
+  "latestReportTitle": "BFM video-PPT v4 promo assets",
+  "reportType": "bfm-video-ppt-redesign-v4",
+  "promoAssetsCurrentPath": "artifacts/bfm-video-current/",
   "publishedArtifacts": [
-    "artifacts/bfm-video-v3/bfm-teaser-90s-v3.pptx",
-    "artifacts/bfm-video-v3/bfm-teaser-90s-v3.pdf",
-    "artifacts/bfm-video-v3/bfm-teaser-90s-v3-contact.png",
-    "artifacts/bfm-video-v3/bfm-walkthrough-3m-v3.pptx",
-    "artifacts/bfm-video-v3/bfm-walkthrough-3m-v3.pdf",
-    "artifacts/bfm-video-v3/bfm-walkthrough-3m-v3-contact.png",
-    "artifacts/bfm-video-v3/README.md"
+    "artifacts/bfm-video-current/bfm-teaser-90s.pptx",
+    "artifacts/bfm-video-current/bfm-teaser-90s.pdf",
+    "artifacts/bfm-video-current/bfm-teaser-90s-contact.png",
+    "artifacts/bfm-video-current/bfm-walkthrough-3m.pptx",
+    "artifacts/bfm-video-current/bfm-walkthrough-3m.pdf",
+    "artifacts/bfm-video-current/bfm-walkthrough-3m-contact.png",
+    "artifacts/bfm-video-current/README.md"
   ],
-  "relatedReports": [
-    "reports/2026-06-09-1131-bfm-video-ppt-redesign-v3.md",
-    "reports/2026-06-08-1750-bfm-video-ppt-draft-assembly.md"
-  ],
-  "sensitivity": "redacted",
+  "artifactsPublished": true,
+  "artifactPolicy": "latest-public-only",
+  "supersededArtifactsRemoved": true,
   "safeToShare": true,
   "safeToShareWithChatGPT": true,
-  "artifactsPublished": true,
-  "artifactPolicy": "marketing-safe-when-scanned",
   "fullScriptsPublished": false,
-  "notes": "Milestone markdown + privacy-scanned marketing PPTX/PDF/contact PNGs. No MP4 yet. No raw screenshot folders, full scripts, VTT, tokens, or secrets."
+  "notes": "Latest promo only. v3 folder removed from main tree. No MP4/scripts/raw screenshots."
 }
