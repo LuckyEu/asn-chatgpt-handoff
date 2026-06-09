@@ -1,12 +1,13 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-09T19:47:00Z",
+  "updatedAt": "2026-06-09T20:41:00Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-09-1247-bfm-video-ppt-redesign-v4.md",
-  "latestReportTitle": "BFM video-PPT v4 promo assets",
-  "reportType": "bfm-video-ppt-redesign-v4",
+  "latestReportArchive": "reports/2026-06-09-1341-bfm-teaser-v41-deck-publish.md",
+  "latestReportTitle": "BFM teaser v4.1 deck assets",
+  "reportType": "bfm-teaser-v41-deck",
   "promoAssetsCurrentPath": "artifacts/bfm-video-current/",
+  "currentTeaserDeckVersion": "v4.1",
   "publishedArtifacts": [
     "artifacts/bfm-video-current/bfm-teaser-90s.pptx",
     "artifacts/bfm-video-current/bfm-teaser-90s.pdf",
@@ -18,9 +19,11 @@
   ],
   "artifactsPublished": true,
   "artifactPolicy": "latest-public-only",
+  "mp4Published": false,
+  "voiceoverStatus": "human_required",
   "supersededArtifactsRemoved": true,
   "safeToShare": true,
   "safeToShareWithChatGPT": true,
   "fullScriptsPublished": false,
-  "notes": "Latest promo only. v3 folder removed from main tree. No MP4/scripts/raw screenshots."
+  "notes": "Teaser deck v4.1 current. TTS MP4 not published. Walkthrough v4 unchanged. No scripts/raw screenshots."
 }

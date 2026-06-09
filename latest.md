@@ -1,42 +1,44 @@
-# BFM video-PPT v4 promo assets
+# BFM teaser v4.1 deck assets
 
-**Verdict:** BFM VIDEO PPT REDESIGN V4 PASS — current public promo assets (latest only)
+**Verdict:** BFM TEASER V4.1 DRAFT PASS — current public teaser deck (latest only)
 
 **Date:** 2026-06-09  
-**reportType:** bfm-video-ppt-redesign-v4
+**reportType:** bfm-teaser-v41-deck
+
+**Status:** BFM teaser **v4.1 deck assets current**; **MP4 human voiceover pending** (TTS draft not published).
 
 ---
 
 ## Summary
 
-- BFM **v4** attorney-facing promo decks rebuilt with ASN Brandbook v2.
-- **6-slide teaser** + **9-slide walkthrough**.
-- Fixes vs v3: cover layout, larger crops, no internal QA labels, stronger CTA, latest-only handoff path.
-- **Superseded** `artifacts/bfm-video-v3/` removed from current main tree.
+- Teaser deck updated to **v4.1** — slides 4 & 5 patched for attorney-facing promo (no redaction mask, readable review queue card).
+- **6-slide teaser** PPTX/PDF/contact published under stable `bfm-video-current/` names.
+- **9-slide walkthrough** remains v4 (unchanged this pass).
+- **Not published:** TTS MP4, VTT/SRT, export notes, raw screenshots, scripts.
 
 ---
 
 ## Current public assets (`artifacts/bfm-video-current/`)
 
-| File | URL |
-|------|-----|
-| Teaser PPTX | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-teaser-90s.pptx |
-| Teaser PDF | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-teaser-90s.pdf |
-| Teaser contact | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-teaser-90s-contact.png |
-| Walkthrough PPTX | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-walkthrough-3m.pptx |
-| Walkthrough PDF | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-walkthrough-3m.pdf |
-| Walkthrough contact | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-walkthrough-3m-contact.png |
+| File | Version | URL |
+|------|---------|-----|
+| Teaser PPTX | v4.1 | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-teaser-90s.pptx |
+| Teaser PDF | v4.1 | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-teaser-90s.pdf |
+| Teaser contact | v4.1 | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-teaser-90s-contact.png |
+| Walkthrough PPTX | v4 | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-walkthrough-3m.pptx |
+| Walkthrough PDF | v4 | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-walkthrough-3m.pdf |
+| Walkthrough contact | v4 | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-current/bfm-walkthrough-3m-contact.png |
 
-**artifactPolicy:** `latest-public-only` · **artifactsPublished:** `true` · **supersededArtifactsRemoved:** `true`
+**artifactPolicy:** `latest-public-only` · **artifactsPublished:** `true` · **mp4Published:** `false` · **voiceoverStatus:** `human_required`
 
 ---
 
 ## Not published here
 
-MP4 (pending voiceover) · full scripts · VTT · raw screenshot folders · internal asset notes
+TTS draft MP4 · VTT/SRT · full scripts · raw screenshot folders · internal export notes · tokens/secrets
 
 ---
 
 ## Safety
 
-Privacy scan PASS · synthetic demo · no tokens/secrets/full statement text
+Privacy scan PASS · synthetic demo · no tokens/secrets/full statement text · no TTS MP4 presented as final
