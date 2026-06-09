@@ -1,24 +1,32 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-09T18:35:00Z",
+  "updatedAt": "2026-06-09T19:10:00Z",
   "latestReport": "latest.md",
   "latestReportArchive": "reports/2026-06-09-1131-bfm-video-ppt-redesign-v3.md",
   "latestReportTitle": "BFM video-PPT v3 — Brandbook redesign PASS",
   "latestInstruction": "instructions/latest-from-chatgpt.md",
   "reportType": "bfm-video-ppt-redesign-v3",
   "sourceLocalPath": "operator Downloads — 2026-06-09-1131-bfm-video-ppt-redesign-v3.md",
+  "artifactPath": "artifacts/bfm-video-v3/",
+  "publishedArtifacts": [
+    "artifacts/bfm-video-v3/bfm-teaser-90s-v3.pptx",
+    "artifacts/bfm-video-v3/bfm-teaser-90s-v3.pdf",
+    "artifacts/bfm-video-v3/bfm-teaser-90s-v3-contact.png",
+    "artifacts/bfm-video-v3/bfm-walkthrough-3m-v3.pptx",
+    "artifacts/bfm-video-v3/bfm-walkthrough-3m-v3.pdf",
+    "artifacts/bfm-video-v3/bfm-walkthrough-3m-v3-contact.png",
+    "artifacts/bfm-video-v3/README.md"
+  ],
   "relatedReports": [
     "reports/2026-06-09-1131-bfm-video-ppt-redesign-v3.md",
-    "reports/2026-06-08-1750-bfm-video-ppt-draft-assembly.md",
-    "reports/2026-06-08-1716-bfm-screenshot-recapture.md",
-    "reports/2026-06-08-1716-bfm-screenshot-visual-qa-rerun.md"
+    "reports/2026-06-08-1750-bfm-video-ppt-draft-assembly.md"
   ],
   "sensitivity": "redacted",
   "safeToShare": true,
   "safeToShareWithChatGPT": true,
-  "artifactsPublished": false,
-  "artifactPolicy": "local-only",
+  "artifactsPublished": true,
+  "artifactPolicy": "marketing-safe-when-scanned",
   "fullScriptsPublished": false,
-  "notes": "Milestone markdown only. No PNGs, PPTX, MP4, PDF, E2E scripts, full video scripts, tokens, or secrets."
+  "notes": "Milestone markdown + privacy-scanned marketing PPTX/PDF/contact PNGs. No MP4 yet. No raw screenshot folders, full scripts, VTT, tokens, or secrets."
 }

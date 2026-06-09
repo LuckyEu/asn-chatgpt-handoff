@@ -10,78 +10,55 @@
 
 ## Summary
 
-- BFM **90s teaser** and **3m walkthrough** decks rebuilt as **v3** using **ASN Brandbook v2** (logo, background, color tokens, Playfair/Inter typography).
-- **Operator recording approval** recorded earlier (`APPROVED_FOR_RECORDING`); voiceover/MP4 still pending.
-- **6-slide teaser** + **9-slide walkthrough** — down from v2 (7/10); no v2 polish pass.
-- **Privacy QA:** PASS on active copy — no tokens, real emails, full statement text, outcome guarantees, or forbidden claims.
-- **Media artifacts remain local-only** (PPTX, PDF, contact sheets, screenshots, MP4). This repo receives **redacted milestone markdown only**.
+- BFM **90s teaser** and **3m walkthrough** decks rebuilt as **v3** using **ASN Brandbook v2**.
+- **Operator recording approval** recorded (`APPROVED_FOR_RECORDING`); voiceover/MP4 still pending.
+- **6-slide teaser** + **9-slide walkthrough**.
+- **Privacy QA:** PASS — synthetic demo; no secrets/PII/tokens/full statement text.
+- **Marketing artifacts published** below (PPTX, PDF, contact PNGs).
+- **Still local-only:** MP4, full scripts, VTT, raw screenshot PNG folder.
 
 ---
 
-## Milestone arc (local, not full content here)
+## Published artifacts (`artifacts/bfm-video-v3/`)
 
-| Stage | Status |
-|-------|--------|
-| Screenshot QA recapture | PASS (9/9) |
-| Script polish + subtitles sync | PASS |
-| Deprecated legacy docs marked | PASS |
-| Operator APPROVED_FOR_RECORDING | 2026-06-09 |
-| PPT v1 draft export | PARTIAL (no MP4 — ffmpeg) |
-| PPT v2 redesign | PASS (superseded — QA-deck feel) |
-| **PPT v3 Brandbook redesign** | **PASS** |
+| File | Raw URL |
+|------|---------|
+| Teaser PPTX | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-v3/bfm-teaser-90s-v3.pptx |
+| Teaser PDF | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-v3/bfm-teaser-90s-v3.pdf |
+| Teaser contact sheet | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-v3/bfm-teaser-90s-v3-contact.png |
+| Walkthrough PPTX | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-v3/bfm-walkthrough-3m-v3.pptx |
+| Walkthrough PDF | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-v3/bfm-walkthrough-3m-v3.pdf |
+| Walkthrough contact sheet | https://raw.githubusercontent.com/LuckyEu/asn-chatgpt-handoff/main/artifacts/bfm-video-v3/bfm-walkthrough-3m-v3-contact.png |
+
+**artifactPolicy:** `marketing-safe-when-scanned` · **artifactsPublished:** `true`
 
 ---
 
-## v3 design (public-safe summary)
+## Not in this repo
+
+- MP4 (pending voiceover)
+- Full recording scripts / VTT
+- Raw screenshot folders / E2E logs
+- Product code, env files, tokens
+
+---
+
+## v3 design (summary)
 
 **Core message:** Two witnesses · two separate relationship statements · one attorney-controlled review workflow.
 
-**Brand compliance:**
-- ASN logo + brand background on cover/closing slides
-- Tokens: Deep Navy, Slate Blue, Soft Blue, Ice Blue, Off White; gold accent; green for pass-state only
-- Playfair Display headlines · Inter body (family names only — no font files)
-- Large cropped synthetic demo screenshots; review collages on attorney-workflow slides
-- Tiny footer: *Synthetic demo · Not legal advice*
-
-**Slide counts:** teaser **6** · walkthrough **9**
-
-**v3 vs v2:** v2 read as internal QA slides; v3 applies brandbook cover system, display typography, ice-card diagram, and large visual proofs.
-
----
-
-## What is NOT in this cloud repo
-
-- PPTX / PDF / PNG contact sheets / MP4 / VTT
-- Full recording scripts or subtitle files
-- Screenshot PNGs or screenshot folders
-- Product code, migrations, env files, tokens, magic links
-
-**artifactPolicy:** `local-only` · **artifactsPublished:** `false`
+**Brand:** ASN logo + background on cover/closing; Playfair/Inter; navy/ice/gold tokens; large cropped synthetic demo visuals; footer *Synthetic demo · Not legal advice*.
 
 ---
 
 ## Remaining blockers
 
-1. Operator visual review of v3 contact sheets (local)
-2. Confirm Playfair/Inter render on operator machine
-3. Voiceover from final script + MP4 export + export-frame privacy QA
-4. No outreach publish/email until post-export operator approval
+1. Voiceover + MP4 export
+2. Export-frame privacy QA before outreach email/publish
+3. Operator font render check (Playfair/Inter)
 
 ---
 
 ## Safety confirmation
 
-- No production data writes
-- No production env changes
-- No invites/emails sent
-- No payments/Stripe/DocuSign/notary
-- No secrets in this report
-- Synthetic demo framing only
-
----
-
-## Related local archives (operator Downloads)
-
-Milestone reports exist locally under `asn-reports/` (not published here): script polish, operator review prep, deprecated-doc marker, approved-for-recording, v1 draft export, v2 redesign, **v3 redesign**.
-
-Local v3 artifact folder name pattern: `bfm-video-redesign-v3-2026-06-09-1131` (PPTX/PDF/contact sheets — **local only**).
+No production writes · no emails sent · no secrets in published files · synthetic demo framing only.
