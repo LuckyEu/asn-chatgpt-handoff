@@ -1,14 +1,15 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-09T00:29:00Z",
+  "updatedAt": "2026-06-09T01:04:26Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-08-1716-bfm-screenshot-recapture.md",
-  "latestReportTitle": "BFM screenshot QA PASS",
+  "latestReportArchive": "reports/2026-06-08-1750-bfm-video-ppt-draft-assembly.md",
+  "latestReportTitle": "BFM video-PPT draft assembly ready for operator review",
   "latestInstruction": "instructions/latest-from-chatgpt.md",
-  "reportType": "bfm-screenshot-qa",
-  "sourceLocalPath": "C:\\Users\\lukoe\\Downloads\\asn-reports\\2026-06-08-1716-bfm-screenshot-recapture.md",
+  "reportType": "bfm-video-ppt-draft-assembly",
+  "sourceLocalPath": "operator Downloads — 2026-06-08-1750-bfm-video-ppt-draft-assembly.md",
   "relatedReports": [
+    "reports/2026-06-08-1750-bfm-video-ppt-draft-assembly.md",
     "reports/2026-06-08-1716-bfm-screenshot-recapture.md",
     "reports/2026-06-08-1716-bfm-screenshot-visual-qa-rerun.md"
   ],
@@ -17,5 +18,6 @@
   "safeToShareWithChatGPT": true,
   "artifactsPublished": false,
   "artifactPolicy": "local-only",
-  "notes": "No secrets, tokens, provider IDs, blob URLs, PDF bytes, screenshots, or raw logs. Artifacts local-only under Downloads."
+  "fullScriptsPublished": false,
+  "notes": "Milestone markdown only. No PNGs, PPTX, MP4, PDF, E2E scripts, full video scripts, tokens, or secrets."
 }
