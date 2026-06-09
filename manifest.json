@@ -1,14 +1,15 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-09T01:04:26Z",
+  "updatedAt": "2026-06-09T18:35:00Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-08-1750-bfm-video-ppt-draft-assembly.md",
-  "latestReportTitle": "BFM video-PPT draft assembly ready for operator review",
+  "latestReportArchive": "reports/2026-06-09-1131-bfm-video-ppt-redesign-v3.md",
+  "latestReportTitle": "BFM video-PPT v3 — Brandbook redesign PASS",
   "latestInstruction": "instructions/latest-from-chatgpt.md",
-  "reportType": "bfm-video-ppt-draft-assembly",
-  "sourceLocalPath": "operator Downloads — 2026-06-08-1750-bfm-video-ppt-draft-assembly.md",
+  "reportType": "bfm-video-ppt-redesign-v3",
+  "sourceLocalPath": "operator Downloads — 2026-06-09-1131-bfm-video-ppt-redesign-v3.md",
   "relatedReports": [
+    "reports/2026-06-09-1131-bfm-video-ppt-redesign-v3.md",
     "reports/2026-06-08-1750-bfm-video-ppt-draft-assembly.md",
     "reports/2026-06-08-1716-bfm-screenshot-recapture.md",
     "reports/2026-06-08-1716-bfm-screenshot-visual-qa-rerun.md"
