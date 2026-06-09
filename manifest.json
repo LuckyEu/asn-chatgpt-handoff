@@ -1,13 +1,17 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-08T23:04:07Z",
+  "updatedAt": "2026-06-09T00:29:00Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-08-1548-bfm-browser-e2e-after-pr89.md",
-  "latestReportTitle": "BFM browser two-witness E2E PASS",
+  "latestReportArchive": "reports/2026-06-08-1716-bfm-screenshot-recapture.md",
+  "latestReportTitle": "BFM screenshot QA PASS",
   "latestInstruction": "instructions/latest-from-chatgpt.md",
-  "reportType": "bfm-browser-two-witness-e2e",
-  "sourceLocalPath": "C:\\Users\\lukoe\\Downloads\\asn-reports\\2026-06-08-1548-bfm-browser-e2e-after-pr89.md",
+  "reportType": "bfm-screenshot-qa",
+  "sourceLocalPath": "C:\\Users\\lukoe\\Downloads\\asn-reports\\2026-06-08-1716-bfm-screenshot-recapture.md",
+  "relatedReports": [
+    "reports/2026-06-08-1716-bfm-screenshot-recapture.md",
+    "reports/2026-06-08-1716-bfm-screenshot-visual-qa-rerun.md"
+  ],
   "sensitivity": "redacted",
   "safeToShare": true,
   "safeToShareWithChatGPT": true,
