@@ -1,9 +1,9 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-09T20:41:00Z",
+  "updatedAt": "2026-06-09T21:57:00Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-09-1341-bfm-teaser-v41-deck-publish.md",
+  "latestReportArchive": "reports/2026-06-09-1457-bfm-voiceover-status-wording-fix.md",
   "latestReportTitle": "BFM teaser v4.1 deck assets",
   "reportType": "bfm-teaser-v41-deck",
   "promoAssetsCurrentPath": "artifacts/bfm-video-current/",
@@ -20,10 +20,10 @@
   "artifactsPublished": true,
   "artifactPolicy": "latest-public-only",
   "mp4Published": false,
-  "voiceoverStatus": "human_required",
+  "voiceoverStatus": "operator_approved_voiceover_required",
   "supersededArtifactsRemoved": true,
   "safeToShare": true,
   "safeToShareWithChatGPT": true,
   "fullScriptsPublished": false,
-  "notes": "Teaser deck v4.1 current. TTS MP4 not published. Walkthrough v4 unchanged. No scripts/raw screenshots."
+  "notes": "Teaser deck v4.1 current. Final operator-approved voiceover pending. TTS MP4 local-only. Walkthrough v4 unchanged."
 }
