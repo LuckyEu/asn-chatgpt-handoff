@@ -1,7 +1,7 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-10T23:02:00Z",
+  "updatedAt": "2026-06-10T23:47:00Z",
   "latestReport": "latest.md",
   "latestReportArchive": "reports/2026-06-10-1543-bfm-promo-distribution-plan.md",
   "latestReportTitle": "BFM promo distribution plan PASS",
@@ -32,5 +32,5 @@
   "safeToShareWithChatGPT": true,
   "fullScriptsPublished": false,
   "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/2026-06-10-1543-bfm-promo-distribution-plan.md",
-  "notes": "Hygiene fix: manifest artifactsPublished aligned with repo; caption/markdown LF normalization. Distribution plan pass did not add new media."
+  "notes": "Formatting fix: markdown and caption files rewritten with explicit LF line breaks for GitHub raw readability. No new media."
 }
