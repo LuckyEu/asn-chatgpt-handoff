@@ -1,11 +1,11 @@
 # BFM video promo — current public assets
 
-**Teaser deck:** v4.1 (2026-06-09-1322)  
-**Walkthrough deck:** v4 (2026-06-09-1247)  
-**Policy:** latest-public-only — superseded folders removed from main tree.
+**Teaser deck:** v5.7 final (2026-06-10-1404)  
+**Teaser MP4:** v5.7 final · en-US-ChristopherNeural · rate -8%  
+**Policy:** latest-public-only
 
-**MP4:** not published — final operator-approved voiceover pending (TTS draft MP4 remains local-only).
-
-**Voiceover:** TTS or professional voice is acceptable if the operator approves the exact final audio. Do not regenerate final voiceover after approval without re-QA.
+**CTA links (include in email/landing page — MP4 buttons are visual only):**
+- Email: pilot@affidavitsupport.net
+- Professional pilot access: https://www.affidavitsupport.net/professional-access
 
 Synthetic demo · Not legal advice · Privacy scan PASS
