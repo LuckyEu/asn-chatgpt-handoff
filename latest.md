@@ -1,19 +1,24 @@
-# Latest — BFM video landing page ready — PR #92
+# Latest — BFM promo distribution plan PASS
 
-**Verdict:** BFM VIDEO LANDING PAGE PASS  
-**Date:** 2026-06-10-1428  
-**Archive:** reports/2026-06-10-1428-bfm-video-landing-page.md
+**Verdict:** BFM PROMO DISTRIBUTION PLAN PASS  
+**Date:** 2026-06-10-1543  
+**Archive:** reports/2026-06-10-1543-bfm-promo-distribution-plan.md
 
 ## Summary
 
-- **Route:** `/professional-access/bfm-workflow`
-- Hero, embedded video with captions, fallback, three value cards, CTAs, disclaimer
-- No forms, no payments, no emails, no production writes
-- After merge/deploy, attorneys should use `https://www.affidavitsupport.net/professional-access/bfm-workflow` instead of raw GitHub MP4 links
-- Outreach not sent
+- YouTube upload package drafted (local)
+- Landing page update spec drafted (local)
+- VideoObject schema spec drafted (local)
+- Social posts drafted (local)
+- Email with landing page link drafted (local)
+- No upload, no social post, no email send, no production changes
 
-## Related public assets
+## Distribution model
 
-Teaser v5.7 MP4/VTT remain in `artifacts/bfm-video-current/` (published earlier).
+YouTube → ASN landing page → pilot@ / professional access
+
+**Canonical page (live):** https://www.affidavitsupport.net/professional-access/bfm-workflow
+
+Full distribution docs remain local-only until operator approves separate publish.
 
 Synthetic demo · Not legal advice.

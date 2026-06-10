@@ -1,11 +1,11 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-10T22:07:00Z",
+  "updatedAt": "2026-06-10T22:54:00Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-10-1428-bfm-video-landing-page.md",
-  "latestReportTitle": "BFM video landing page ready — PR #92",
-  "reportType": "bfm-video-landing-page",
+  "latestReportArchive": "reports/2026-06-10-1543-bfm-promo-distribution-plan.md",
+  "latestReportTitle": "BFM promo distribution plan PASS",
+  "reportType": "bfm-promo-distribution-plan",
   "pageRoute": "/professional-access/bfm-workflow",
   "promoAssetsCurrentPath": "artifacts/bfm-video-current/",
   "currentTeaserDeckVersion": "v5.7",
@@ -21,12 +21,15 @@
   "artifactsPublished": false,
   "artifactPolicy": "local-only",
   "mp4Published": true,
+  "youtubeUploaded": false,
+  "socialPosted": false,
+  "emailSent": false,
   "voiceoverStatus": "operator_approved_v57_final",
   "voice": "en-US-ChristopherNeural",
   "voiceRate": "-8%",
   "safeToShare": true,
   "safeToShareWithChatGPT": true,
   "fullScriptsPublished": false,
-  "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/2026-06-10-1428-bfm-video-landing-page.md",
-  "notes": "Landing page report publish only. Teaser v5.7 MP4 remains in artifacts/bfm-video-current/. PR #92 await merge/deploy for live page."
+  "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/2026-06-10-1543-bfm-promo-distribution-plan.md",
+  "notes": "Distribution plan report only. Full bfm-distribution-v1 docs local-only. Landing page live. No YouTube/social/email this pass."
 }
