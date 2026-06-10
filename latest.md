@@ -1,12 +1,19 @@
-# Latest — BFM teaser v5.7 final
+# Latest — BFM video landing page ready — PR #92
 
-**Verdict:** BFM TEASER V5.7 FINAL SOURCE SYNC PASS  
-**Date:** 2026-06-10-1404  
-**Teaser:** v5.7 final (7 slides + MP4)  
-**Archive:** reports/2026-06-10-1404-bfm-teaser-v57-final-source-sync.md
+**Verdict:** BFM VIDEO LANDING PAGE PASS  
+**Date:** 2026-06-10-1428  
+**Archive:** reports/2026-06-10-1428-bfm-video-landing-page.md
 
-Public assets: `artifacts/bfm-video-current/` — PPTX, PDF, contact sheet, MP4, VTT, SRT.
+## Summary
 
-CTA: pilot@affidavitsupport.net · /professional-access (links in outreach, not clickable in MP4).
+- **Route:** `/professional-access/bfm-workflow`
+- Hero, embedded video with captions, fallback, three value cards, CTAs, disclaimer
+- No forms, no payments, no emails, no production writes
+- After merge/deploy, attorneys should use `https://www.affidavitsupport.net/professional-access/bfm-workflow` instead of raw GitHub MP4 links
+- Outreach not sent
+
+## Related public assets
+
+Teaser v5.7 MP4/VTT remain in `artifacts/bfm-video-current/` (published earlier).
 
 Synthetic demo · Not legal advice.

@@ -1,11 +1,12 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-10T21:06:22.882Z",
+  "updatedAt": "2026-06-10T22:07:00Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-10-1404-bfm-teaser-v57-final-source-sync.md",
-  "latestReportTitle": "BFM teaser v5.7 final source sync",
-  "reportType": "bfm-teaser-v57-final",
+  "latestReportArchive": "reports/2026-06-10-1428-bfm-video-landing-page.md",
+  "latestReportTitle": "BFM video landing page ready — PR #92",
+  "reportType": "bfm-video-landing-page",
+  "pageRoute": "/professional-access/bfm-workflow",
   "promoAssetsCurrentPath": "artifacts/bfm-video-current/",
   "currentTeaserDeckVersion": "v5.7",
   "publishedArtifacts": [
@@ -17,8 +18,8 @@
     "artifacts/bfm-video-current/bfm-teaser-90s.srt",
     "artifacts/bfm-video-current/README.md"
   ],
-  "artifactsPublished": true,
-  "artifactPolicy": "latest-public-only",
+  "artifactsPublished": false,
+  "artifactPolicy": "local-only",
   "mp4Published": true,
   "voiceoverStatus": "operator_approved_v57_final",
   "voice": "en-US-ChristopherNeural",
@@ -26,6 +27,6 @@
   "safeToShare": true,
   "safeToShareWithChatGPT": true,
   "fullScriptsPublished": false,
-  "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/artifacts/bfm-teaser-v57-final-2026-06-10-1404",
-  "notes": "v5.7 final: slide 5 Pending chips synced across PPTX/PDF/contact/MP4. MP4 uses approved ChristopherNeural -8% audio from draft pass (not regenerated)."
+  "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/2026-06-10-1428-bfm-video-landing-page.md",
+  "notes": "Landing page report publish only. Teaser v5.7 MP4 remains in artifacts/bfm-video-current/. PR #92 await merge/deploy for live page."
 }
