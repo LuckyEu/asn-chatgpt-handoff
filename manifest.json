@@ -1,7 +1,7 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-11T00:09:21Z",
+  "updatedAt": "2026-06-11T00:16:10Z",
   "latestReport": "latest.md",
   "latestReportArchive": "reports/2026-06-10-1543-bfm-promo-distribution-plan.md",
   "latestReportTitle": "BFM promo distribution plan PASS",
@@ -32,5 +32,11 @@
   "safeToShareWithChatGPT": true,
   "fullScriptsPublished": false,
   "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/2026-06-10-1543-bfm-promo-distribution-plan.md",
-  "notes": "Hard LF rewrite: markdown and caption files written with explicit 0x0A newlines for GitHub raw readability. No new media."
+  "notes": [
+    "Caption fix: removed non-spoken footer cue 8 (Demo workflow disclaimer remains on video/landing page).",
+    "Public raw markdown/captions validated LF-only from GitHub raw URLs.",
+    "Distribution plan pass did not add new media."
+  ],
+  "captionCueCount": 7,
+  "footerDisclaimerVisualOnly": true
 }
