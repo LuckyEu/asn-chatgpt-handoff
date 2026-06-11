@@ -1,4 +1,8 @@
-*.md text eol=lf
-*.vtt text eol=lf
-*.srt text eol=lf
+# Store public markdown/captions verbatim (LF bytes) — no EOL conversion
+latest.md -text
+artifacts/bfm-video-current/README.md -text
+artifacts/bfm-video-current/*.vtt -text
+artifacts/bfm-video-current/*.srt -text
+
+# JSON keeps normalized LF
 *.json text eol=lf
