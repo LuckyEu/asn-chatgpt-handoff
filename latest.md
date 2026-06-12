@@ -1,28 +1,48 @@
-# Latest — E2E2B ready for attorney decision after PR #98
+# Latest — BFM declaration regen PASS; applicant PDF-before-approval bug diagnosed
 
-**Verdict:** E2E2B_READY_FOR_ATTORNEY_DECISION  
+**Verdict:** BFM_DECLARATION_PREVIEW_REGEN_PASS + APPLICANT_PDF_BEFORE_APPROVAL_BUG  
 **Date:** 2026-06-12  
-**Archive:** reports/2026-06-12-0855-e2e2b-joe-review-actions-recheck-after-pr98.md  
-**Product PR:** https://github.com/LuckyEu/affidavit-support-network/pull/98
+**Archives:**
+- reports/2026-06-12-0925-bfm-declaration-quality-preview-regen.md
+- reports/2026-06-12-0932-joe-applicant-pdf-email-diagnosis.md
 
 ## Summary
 
-- Production is on PR #98 at commit `08469d49`.
-- Joe Average submitted witness statement is visible in `/attorney/tasks` for attorney-demo.
-- `/attorney/review` shows good-faith panel, timeline, revision reasons, **Request revision**, and **Approve statement** (derived policy fixes stale persisted `attorney_approval_required=false`).
-- No approval, revision, signing, provider, payment, or email was performed in this recheck.
-- Existing Joe statement is a **pre-PR97 generated artifact** and should **not** be approved as-is.
-- Next recommended action: **request revision** or create a **fresh controlled witness** after PR #97 so declaration text reflects current BFM quality rules.
+- PR #97 future BFM declaration output passes preview/dev regeneration (synthetic fixture; all quality checklist items PASS).
+- Existing production Joe row (`f15df8e5…`) remains a pre-PR97 artifact and **should not be approved**.
+- Diagnosis confirmed the full declaration PDF was sent to the applicant (`dr.emily.dds@…`) at witness submit time, **before** attorney approval, under pre-fix stale `attorney_approval_required=false` behavior on a firm-linked I-130 BFM case.
+- DB proof: `pdfSentToRequesterAt` set same second as submit while `attorney_approved_at` is null; `email_messages` has no row for `prepare_for_manual_signature_pdf` (tracking disabled on that send path).
+- **Next product fix:** stale `signature_preparation` / PDF delivery guard before requesting revision or approval (`stale_signature_prep_review_policy`).
+- **No production writes** in either source report.
 
-## Production identity
+## BFM regen (synthetic)
 
-- `GET https://www.affidavitsupport.net/api/build-info` → commit `08469d49…`, ref `main`, env `production`
-- Read-only visibility recheck only; Joe row not mutated.
+| Check | Result |
+|---|---|
+| Post-PR97 declaration quality checklist | **13/13 PASS** |
+| Production Joe touched | **No** |
+| Unit tests (`bfmWitnessDeclarationQuality`) | **9/9 PASS** |
+| PDF artifact | Local-only under Downloads `artifacts/` (not in cloud repo) |
+
+## Applicant PDF diagnosis (read-only production)
+
+| Check | Result |
+|---|---|
+| Applicant received full PDF before approval | **Confirmed** |
+| Witness-only copy | **No** (PDF to inviter/applicant) |
+| Joe approval recommended | **No** |
+| Recommended operator action | Request revision or fresh controlled witness |
+
+## Operational guidance
+
+1. Do **not** approve Joe's stored statement as-is.
+2. Ship or merge stale signature-prep review policy fix before treating legacy rows as signing-ready.
+3. After witness resubmit + attorney approval, regenerate PDF using post-PR97 code path.
 
 ## Prior milestones
 
-- PR #97 merged: global BFM declaration quality fix (`6c78318a`).
-- PR #96 merged: firm-linked attorney review queue (`1cfe1c39`).
-- PR #98 merged: review-page action visibility via derived policy (`08469d49`).
+- PR #97: BFM declaration quality merge
+- PR #98: attorney review actions via derived policy (production `08469d49`)
+- E2E2B: Joe visible in attorney review queue with Approve / Request revision
 
 Synthetic demo · Not legal advice.
