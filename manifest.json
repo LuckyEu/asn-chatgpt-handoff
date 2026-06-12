@@ -1,28 +1,31 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-12T17:13:53Z",
+  "updatedAt": "2026-06-12T19:12:00Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-12-0932-joe-applicant-pdf-email-diagnosis.md",
-  "latestReportTitle": "BFM declaration regen PASS; applicant PDF-before-approval bug diagnosed",
-  "reportType": "bfm-declaration-regen-and-pdf-delivery-diagnosis",
-  "productionCommit": "08469d49",
+  "latestReportArchive": "reports/2026-06-12-1210-pr99-stale-signature-prep-merge.md",
+  "latestReportTitle": "PDF delivery now requires effective attorney approval — PR #99",
+  "reportType": "stale-signature-prep-merge",
+  "productionCommit": "639a212e",
   "productionWriteSmoke": false,
   "joeProductionTouched": false,
   "approvalPerformed": false,
-  "revisionRequested": false,
+  "revisionRequested": true,
   "signingTriggered": false,
   "existingStatementArtifact": "pre_pr97",
-  "applicantPdfBeforeApprovalBug": true,
+  "applicantPdfBeforeApprovalBug": "fixed_for_future",
   "joeApprovalRecommended": false,
-  "nextProductFix": "stale_signature_prep_review_policy",
+  "nextOperationalStep": "joe_revision_resubmit",
+  "nextProductFix": null,
   "bfmDeclarationPreviewRegenPass": true,
+  "productPr99Url": "https://github.com/LuckyEu/affidavit-support-network/pull/99",
   "productPr97Url": "https://github.com/LuckyEu/affidavit-support-network/pull/97",
   "productPr96Url": "https://github.com/LuckyEu/affidavit-support-network/pull/96",
   "productPr98Url": "https://github.com/LuckyEu/affidavit-support-network/pull/98",
   "archiveReports": [
     "reports/2026-06-12-0925-bfm-declaration-quality-preview-regen.md",
-    "reports/2026-06-12-0932-joe-applicant-pdf-email-diagnosis.md"
+    "reports/2026-06-12-0932-joe-applicant-pdf-email-diagnosis.md",
+    "reports/2026-06-12-1210-pr99-stale-signature-prep-merge.md"
   ],
   "promoAssetsCurrentPath": "artifacts/bfm-video-current/",
   "currentTeaserDeckVersion": "v5.7",
@@ -48,16 +51,13 @@
   "safeToShare": true,
   "safeToShareWithChatGPT": true,
   "fullScriptsPublished": false,
-  "sourceLocalPaths": [
-    "C:/Users/lukoe/Downloads/asn-reports/2026-06-12-0925-bfm-declaration-quality-preview-regen.md",
-    "C:/Users/lukoe/Downloads/asn-reports/2026-06-12-0932-joe-applicant-pdf-email-diagnosis.md"
-  ],
+  "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/2026-06-12-1210-pr99-stale-signature-prep-merge.md",
   "notes": [
-    "BFM_DECLARATION_PREVIEW_REGEN_PASS: synthetic post-PR97 declaration regen passes all quality checks.",
-    "APPLICANT_PDF_BEFORE_APPROVAL_BUG: Joe production row received full PDF at witness submit before attorney approval.",
+    "PR99_MERGE_PASS: PDF delivery guard merged and deployed to production at 639a212e.",
+    "Firm-linked prepare-for-signature blocks until effective attorney approval.",
     "Joe stored statement is pre-PR97 artifact — do not approve as-is.",
-    "Next product fix: stale_signature_prep_review_policy before revision/approval on legacy rows.",
-    "No production writes in source reports."
+    "Joe at NEEDS_REVISION from prior controlled pass; next step joe_revision_resubmit.",
+    "No production writes during merge pass."
   ],
   "captionCueCount": 7,
   "footerDisclaimerVisualOnly": true

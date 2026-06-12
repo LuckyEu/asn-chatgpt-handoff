@@ -1,48 +1,40 @@
-# Latest — BFM declaration regen PASS; applicant PDF-before-approval bug diagnosed
+# Latest — PDF delivery now requires effective attorney approval — PR #99
 
-**Verdict:** BFM_DECLARATION_PREVIEW_REGEN_PASS + APPLICANT_PDF_BEFORE_APPROVAL_BUG  
+**Verdict:** `PR99_MERGE_PASS`  
 **Date:** 2026-06-12  
-**Archives:**
-- reports/2026-06-12-0925-bfm-declaration-quality-preview-regen.md
-- reports/2026-06-12-0932-joe-applicant-pdf-email-diagnosis.md
+**Archive:** reports/2026-06-12-1210-pr99-stale-signature-prep-merge.md  
+**Product PR:** https://github.com/LuckyEu/affidavit-support-network/pull/99  
+**Production commit:** `639a212e21f7c3b2e1061921c20ffca259d9de39`
 
 ## Summary
 
-- PR #97 future BFM declaration output passes preview/dev regeneration (synthetic fixture; all quality checklist items PASS).
-- Existing production Joe row (`f15df8e5…`) remains a pre-PR97 artifact and **should not be approved**.
-- Diagnosis confirmed the full declaration PDF was sent to the applicant (`dr.emily.dds@…`) at witness submit time, **before** attorney approval, under pre-fix stale `attorney_approval_required=false` behavior on a firm-linked I-130 BFM case.
-- DB proof: `pdfSentToRequesterAt` set same second as submit while `attorney_approved_at` is null; `email_messages` has no row for `prepare_for_manual_signature_pdf` (tracking disabled on that send path).
-- **Next product fix:** stale `signature_preparation` / PDF delivery guard before requesting revision or approval (`stale_signature_prep_review_policy`).
-- **No production writes** in either source report.
+- PR #99 prevents firm-linked applicant PDF delivery before effective attorney approval.
+- `prepare-for-signature` now returns attorney-pending instead of sending PDF when review is required.
+- Revision and approval clear stale `signature_preparation` so future output regenerates with current code.
+- Joe production artifact remains pre-PR97 and **should not be approved as-is**.
+- **Next step:** controlled Joe revision/resubmit workflow.
+- No Joe mutation, approval, emails, or provider calls occurred during merge.
 
-## BFM regen (synthetic)
+## What shipped
 
-| Check | Result |
-|---|---|
-| Post-PR97 declaration quality checklist | **13/13 PASS** |
-| Production Joe touched | **No** |
-| Unit tests (`bfmWitnessDeclarationQuality`) | **9/9 PASS** |
-| PDF artifact | Local-only under Downloads `artifacts/` (not in cloud repo) |
+| Guard | Behavior |
+|-------|----------|
+| Derived attorney-review policy | Firm-linked cases block PDF even when persisted `attorney_approval_required=false` |
+| Before approval | 423 `ATTORNEY_APPROVAL_PENDING` — no PDF, email, or `pdfSentToRequesterAt` |
+| Stale pre-approval prep | Not treated as `alreadySubmitted`; safe block message on re-access |
+| Request revision | Clears `signature_preparation` |
+| Attorney approval | Clears `signature_preparation` for fresh post-approval regen |
+| Witness submit | Routes 423 to attorney-pending thank-you |
+| Observability | Metadata-only `email_messages` for manual-signature PDF sends when tracking disabled |
 
-## Applicant PDF diagnosis (read-only production)
+## Production identity
 
-| Check | Result |
-|---|---|
-| Applicant received full PDF before approval | **Confirmed** |
-| Witness-only copy | **No** (PDF to inviter/applicant) |
-| Joe approval recommended | **No** |
-| Recommended operator action | Request revision or fresh controlled witness |
-
-## Operational guidance
-
-1. Do **not** approve Joe's stored statement as-is.
-2. Ship or merge stale signature-prep review policy fix before treating legacy rows as signing-ready.
-3. After witness resubmit + attorney approval, regenerate PDF using post-PR97 code path.
+- `GET https://www.affidavitsupport.net/api/build-info` → commit `639a212e…`, ref `main`, env `production`
 
 ## Prior milestones
 
-- PR #97: BFM declaration quality merge
-- PR #98: attorney review actions via derived policy (production `08469d49`)
-- E2E2B: Joe visible in attorney review queue with Approve / Request revision
+- PR #97: BFM declaration quality
+- PR #96/#98: firm-linked attorney review queue and review actions
+- Diagnosis: applicant PDF-before-approval bug (Joe E2E)
 
 Synthetic demo · Not legal advice.
