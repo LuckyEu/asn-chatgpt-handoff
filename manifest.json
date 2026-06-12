@@ -1,11 +1,16 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-11T00:16:10Z",
+  "updatedAt": "2026-06-12T00:45:00Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-10-1543-bfm-promo-distribution-plan.md",
-  "latestReportTitle": "BFM promo distribution plan PASS",
-  "reportType": "bfm-promo-distribution-plan",
+  "latestReportArchive": "reports/2026-06-11-1733-pr97-bfm-declaration-quality-merge.md",
+  "latestReportTitle": "BFM declaration quality fix merged — PR #97",
+  "reportType": "bfm-declaration-quality-merge",
+  "productionCommit": "6c78318a",
+  "productionWriteSmoke": false,
+  "joeProductionTouched": false,
+  "pr96Status": "open_rebase_needed",
+  "productPr97Url": "https://github.com/LuckyEu/affidavit-support-network/pull/97",
   "pageRoute": "/professional-access/bfm-workflow",
   "promoAssetsCurrentPath": "artifacts/bfm-video-current/",
   "currentTeaserDeckVersion": "v5.7",
@@ -31,11 +36,12 @@
   "safeToShare": true,
   "safeToShareWithChatGPT": true,
   "fullScriptsPublished": false,
-  "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/2026-06-10-1543-bfm-promo-distribution-plan.md",
+  "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/2026-06-11-1733-pr97-bfm-declaration-quality-merge.md",
   "notes": [
-    "Caption fix: removed non-spoken footer cue 8 (Demo workflow disclaimer remains on video/landing page).",
-    "Public raw markdown/captions validated LF-only from GitHub raw URLs.",
-    "Distribution plan pass did not add new media."
+    "PR #97 merged: global BFM declaration quality fix at 6c78318a.",
+    "Joe production row/PDF not touched.",
+    "PR #96 attorney review queue open — rebase needed before merge.",
+    "No production write smoke or PDF regeneration in this pass."
   ],
   "captionCueCount": 7,
   "footerDisclaimerVisualOnly": true
