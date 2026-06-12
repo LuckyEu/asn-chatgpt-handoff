@@ -1,21 +1,24 @@
 {
   "handoffVersion": 1,
   "project": "affidavit-support-network",
-  "updatedAt": "2026-06-12T19:12:00Z",
+  "updatedAt": "2026-06-12T19:50:00Z",
   "latestReport": "latest.md",
-  "latestReportArchive": "reports/2026-06-12-1210-pr99-stale-signature-prep-merge.md",
-  "latestReportTitle": "PDF delivery now requires effective attorney approval — PR #99",
-  "reportType": "stale-signature-prep-merge",
+  "latestReportArchive": "reports/2026-06-12-1247-e2e2d-joe-revision-resubmit.md",
+  "latestReportTitle": "Joe revision resubmit PASS; attorney review pending",
+  "reportType": "e2e2d-joe-revision-resubmit",
   "productionCommit": "639a212e",
-  "productionWriteSmoke": false,
-  "joeProductionTouched": false,
+  "productionWriteSmoke": true,
+  "joeProductionTouched": true,
+  "joeStatus": "submitted_after_revision",
   "approvalPerformed": false,
   "revisionRequested": true,
   "signingTriggered": false,
-  "existingStatementArtifact": "pre_pr97",
+  "existingStatementArtifact": "regenerated_on_resubmit",
+  "applicantPdfBeforeApproval": false,
   "applicantPdfBeforeApprovalBug": "fixed_for_future",
+  "pdfGuard": "pass",
   "joeApprovalRecommended": false,
-  "nextOperationalStep": "joe_revision_resubmit",
+  "nextOperationalStep": "joe_approval_pdf_ledger",
   "nextProductFix": null,
   "bfmDeclarationPreviewRegenPass": true,
   "productPr99Url": "https://github.com/LuckyEu/affidavit-support-network/pull/99",
@@ -25,7 +28,8 @@
   "archiveReports": [
     "reports/2026-06-12-0925-bfm-declaration-quality-preview-regen.md",
     "reports/2026-06-12-0932-joe-applicant-pdf-email-diagnosis.md",
-    "reports/2026-06-12-1210-pr99-stale-signature-prep-merge.md"
+    "reports/2026-06-12-1210-pr99-stale-signature-prep-merge.md",
+    "reports/2026-06-12-1247-e2e2d-joe-revision-resubmit.md"
   ],
   "promoAssetsCurrentPath": "artifacts/bfm-video-current/",
   "currentTeaserDeckVersion": "v5.7",
@@ -36,7 +40,7 @@
     "artifacts/bfm-video-current/bfm-teaser-90s.mp4",
     "artifacts/bfm-video-current/bfm-teaser-90s.vtt",
     "artifacts/bfm-video-current/bfm-teaser-90s.srt",
-    "artifacts/bfm-video-current/README.md"
+    "artifacts/bfm-video-current/bfm-teaser-90s/README.md"
   ],
   "artifactsPublished": false,
   "artifactPolicy": "local-only",
@@ -51,13 +55,13 @@
   "safeToShare": true,
   "safeToShareWithChatGPT": true,
   "fullScriptsPublished": false,
-  "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/2026-06-12-1210-pr99-stale-signature-prep-merge.md",
+  "sourceLocalPath": "C:/Users/lukoe/Downloads/asn-reports/2026-06-12-1247-e2e2d-joe-revision-resubmit.md",
   "notes": [
-    "PR99_MERGE_PASS: PDF delivery guard merged and deployed to production at 639a212e.",
-    "Firm-linked prepare-for-signature blocks until effective attorney approval.",
-    "Joe stored statement is pre-PR97 artifact — do not approve as-is.",
-    "Joe at NEEDS_REVISION from prior controlled pass; next step joe_revision_resubmit.",
-    "No production writes during merge pass."
+    "JOE_REVISION_RESUBMIT_PASS: Joe resubmitted NEEDS_REVISION to SUBMITTED on production.",
+    "Attorney review queue restored; approve/revision actions visible; approval not performed.",
+    "PDF-before-approval guard held: no applicant PDF, no signature_preparation, no pdfSentToRequesterAt.",
+    "Only attorney_statement_review_requested email on resubmit.",
+    "Next step: joe_approval_pdf_ledger (controlled approve + post-approval PDF/ledger check)."
   ],
   "captionCueCount": 7,
   "footerDisclaimerVisualOnly": true

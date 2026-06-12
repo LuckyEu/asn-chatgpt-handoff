@@ -1,31 +1,53 @@
-# Latest — PDF delivery now requires effective attorney approval — PR #99
+# Latest — Joe revision resubmit PASS; attorney review pending
 
-**Verdict:** `PR99_MERGE_PASS`  
+**Verdict:** `JOE_REVISION_RESUBMIT_PASS`  
 **Date:** 2026-06-12  
-**Archive:** reports/2026-06-12-1210-pr99-stale-signature-prep-merge.md  
-**Product PR:** https://github.com/LuckyEu/affidavit-support-network/pull/99  
+**Archive:** reports/2026-06-12-1247-e2e2d-joe-revision-resubmit.md  
 **Production commit:** `639a212e21f7c3b2e1061921c20ffca259d9de39`
 
 ## Summary
 
-- PR #99 prevents firm-linked applicant PDF delivery before effective attorney approval.
-- `prepare-for-signature` now returns attorney-pending instead of sending PDF when review is required.
-- Revision and approval clear stale `signature_preparation` so future output regenerates with current code.
-- Joe production artifact remains pre-PR97 and **should not be approved as-is**.
-- **Next step:** controlled Joe revision/resubmit workflow.
-- No Joe mutation, approval, emails, or provider calls occurred during merge.
+- Joe Average completed controlled revision/resubmit on production using the same witness token (no new invite).
+- Request returned to **`SUBMITTED`** from **`NEEDS_REVISION`**.
+- Attorney review queue and review page show Joe for the controlled attorney demo account.
+- Approve statement / Request revision actions visible; **approval not performed**.
+- PDF-before-approval guard held: no applicant PDF, no `prepare_for_manual_signature_pdf`, no `signature_preparation`, no `pdfSentToRequesterAt` before approval.
+- Only expected attorney review notification email was sent (`attorney_statement_review_requested`).
+- Document heading on review: **PERSONAL OBSERVATIONS OF THE RELATIONSHIP** — no GMC/TBOMK/no-records leakage observed.
+- **Next step:** controlled attorney approval + post-approval PDF/ledger check.
 
-## What shipped
+## Resubmit outcome
 
-| Guard | Behavior |
-|-------|----------|
-| Derived attorney-review policy | Firm-linked cases block PDF even when persisted `attorney_approval_required=false` |
-| Before approval | 423 `ATTORNEY_APPROVAL_PENDING` — no PDF, email, or `pdfSentToRequesterAt` |
-| Stale pre-approval prep | Not treated as `alreadySubmitted`; safe block message on re-access |
-| Request revision | Clears `signature_preparation` |
-| Attorney approval | Clears `signature_preparation` for fresh post-approval regen |
-| Witness submit | Routes 423 to attorney-pending thank-you |
-| Observability | Metadata-only `email_messages` for manual-signature PDF sends when tracking disabled |
+| Field | Value |
+|-------|--------|
+| Request prefix | `f15df8e5` |
+| Pre-run status | `NEEDS_REVISION` |
+| Post-run status | **`SUBMITTED`** |
+| `attorney_approved_at` | null |
+| `signature_preparation` | NULL |
+| `pdfSentToRequesterAt` | absent |
+| Witness token | unchanged (existing controlled token) |
+
+## Attorney review visibility
+
+| Check | Result |
+|-------|--------|
+| Review queue — Joe listed | Yes |
+| `/attorney/tasks` — Joe visible | Yes |
+| Case context (Emily Dental / Daniel Reed) | Yes |
+| Good-faith panel + timeline | Visible |
+| Structured revision reasons | Visible |
+| Approve / Request revision | Visible (not clicked) |
+
+## PDF guard
+
+| Guard | Result |
+|-------|--------|
+| Applicant PDF before approval | **None** |
+| Pre-approval prep completion | **None** |
+| Provider / signing / payment | **None** |
+
+**Classification:** `pdfGuard = pass` — no regression vs PR #99 policy.
 
 ## Production identity
 
@@ -33,8 +55,8 @@
 
 ## Prior milestones
 
+- PR #99: stale signature-prep / PDF delivery guard (merged)
 - PR #97: BFM declaration quality
 - PR #96/#98: firm-linked attorney review queue and review actions
-- Diagnosis: applicant PDF-before-approval bug (Joe E2E)
 
 Synthetic demo · Not legal advice.
