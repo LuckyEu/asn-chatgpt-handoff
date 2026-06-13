@@ -1,75 +1,87 @@
-# Latest — B2B ledger dev/staging smoke PASS; production rollout pending approval
+# Latest — Attorney review history UX live — PR #103
 
-**Verdict:** `B2B_LEDGER_DEV_SMOKE_PASS`  
+**Verdict:** `PR103_PRODUCTION_READONLY_PASS`  
 **Date:** 2026-06-13  
-**Dev smoke archive:** reports/2026-06-13-1246-b2b-ledger-dev-smoke.md  
-**Production rollout plan:** reports/2026-06-13-1257-b2b-ledger-production-rollout-plan.md  
-**Merge archive:** reports/2026-06-13-1211-pr102-b2b-ledger-merge.md  
-**Production commit:** `3463a4470d0f66b6fd9f10bd7c72d469110e0282`
+**Merge archive:** reports/2026-06-13-1437-pr103-attorney-review-history-ux-merge.md  
+**Production spot-check archive:** reports/2026-06-13-1454-pr103-production-review-history-spotcheck.md  
+**Production commit:** `b8db55d40555566628af5776187b11942e03c44d`
 
 ## Summary
 
-- PR #102 code path is merged.
-- Dev/staging migration 118 is applied and verified.
-- `B2B_USAGE_LEDGER_ENABLED=true` was tested in dev/staging only.
-- One firm-linked I-130/BFM approval created exactly one `statement_approved` event.
-- Event classified as `non_billable_test` with safe metadata only.
-- Idempotency verified; retry did not duplicate.
-- Admin usage API returned sanitized events.
-- Production migration 118 is not applied.
-- Production `B2B_USAGE_LEDGER_ENABLED` is not set.
-- Production rollout requires explicit operator approvals.
-- No production ledger writes, backfill, Stripe, invoices, emails, or provider calls.
+- PR #103 merged and production read-only spot-check passed.
+- Statement history no longer hangs on Loading review history.
+- Ambiguous "First draft saved" / draft_started removed.
+- Attorney-facing timeline labels now distinguish witness form start, saved answers, submission, revision, approval, and PDF events.
+- Empty and error states are explicit.
+- No first review-ready draft event is shown because that artifact is not persisted yet.
+- B2B ledger production rollout remains deferred.
+- No production approvals, emails, payments, providers, signing, or ledger rollout occurred during spot-check.
 
-## Dev/staging smoke outcome
+## Merge outcome (PR #103)
 
 | Field | Value |
 |-------|--------|
-| PR | https://github.com/LuckyEu/affidavit-support-network/pull/102 |
-| Dev DB fingerprint | `ep-wild-cloud-afbfdnz7` |
-| Migration 118 on dev | applied (111/111) |
-| Ledger flag (dev/local only) | `true` |
-| Primary fixture request | `bfab618b…` |
-| Case type | `I130_BONAFIDE_MARRIAGE` |
-| Witness (synthetic) | Joe Average Dev |
-| Execution requirement | `DECLARATION_E_SIGN` |
-| Approval path | attorney-approval POST (firm-supervised) |
-| Ledger rows per request | 1 |
-| `billable_status` | `non_billable_test` |
-| Unit tests | 19/19 pass |
+| PR | https://github.com/LuckyEu/affidavit-support-network/pull/103 |
+| Squash commit | `b8db55d4` |
+| Merged | 2026-06-13T21:34:57Z |
+| Scope | 10 files — attorney review history UX only |
+| CI | Build and Test, Unit/Functional/Regression, Vercel — pass |
 
-## Production status (unchanged)
+### Key changes
+
+- Shared label taxonomy (`reviewHistoryLabels.ts`)
+- Statement history panel: fixed loading loop; empty/error/retry states
+- Good-faith review record aligned to same attorney-facing labels
+- Removed ambiguous draft_started / "First draft saved"
+- Backlog note for future first_review_ready_draft snapshot (not fabricated in UI)
+
+### Out of scope (confirmed)
+
+- Payments / Stripe
+- Provider / notary / signing / finalization
+- B2B ledger production rollout
+- Migrations
+
+## Production read-only spot-check
+
+| Field | Value |
+|-------|--------|
+| Environment | production @ `b8db55d4` |
+| Account | Controlled attorney-demo (read-only) |
+| Target | Controlled Joe Average firm-linked review (request f15d…f8fd) |
+| Review API | HTTP 200 |
+| Timeline events | 8 attorney-facing events |
+
+### Verified on production
+
+- Panel title: **Statement history — Joe Average**
+- No infinite "Loading review history…" after expand
+- Labels: Witness invite sent, Witness opened secure link, Witness started statement form, Submitted for attorney review, Attorney requested revision, Attorney approved statement, PDF prepared/sent
+- No "First draft saved" or draft_started
+- Good-faith: Attorney review status, Statement scope set by firm intake, Readiness labels (identity document, signing preparation), AI assistance labels
+- Initial witness answers saved correctly omitted when not derivable from timestamps
+
+## B2B ledger status (unchanged)
 
 | Item | Status |
 |------|--------|
-| Migration 118 on production | **Not applied** |
-| `B2B_USAGE_LEDGER_ENABLED` on production | **Not set** |
-| Production ledger writes | **None** |
-| Backfill | **Not performed** |
+| Migration 118 on production | Not applied |
+| Production ledger flag | Not set |
+| Production ledger writes | None |
 
-## Production rollout gate
-
-Requires both approval tokens in operator prompt:
-
-- `APPROVE_PRODUCTION_MIGRATION_118_B2B_USAGE_EVENTS`
-- `APPROVE_ENABLE_B2B_USAGE_LEDGER_PRODUCTION`
-
-**Order:** migration 118 before flag enable (flag-on without table → approval 503).
-
-See rollout plan archive for phased runbook.
+Production rollout still requires explicit operator approvals (see prior B2B ledger handoff archives).
 
 ## Safety
 
 | Constraint | Status |
 |------------|--------|
-| Dev/staging smoke only | PASS |
-| No production migration/env change | PASS |
-| No emails / Stripe / providers | PASS |
+| Read-only production spot-check | PASS |
+| No production writes / approvals / emails | PASS |
+| No payments / providers / signing actions | PASS |
 | No secrets in handoff | PASS |
 
-## Prior milestones
+## Next operational step
 
-- PR #102 merge: B2B pilot usage ledger code deployed (ledger disabled on production)
-- PR #101: attorney execution requirement live on production
+`decide_b2b_ledger_rollout_or_first_review_ready_draft_spec`
 
 Synthetic demo · Not legal advice.
