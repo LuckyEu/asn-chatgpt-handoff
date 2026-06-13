@@ -1,74 +1,87 @@
-# Latest — Attorney execution requirement live — PR #101
+# Latest — B2B pilot usage ledger merged — disabled until migration/env rollout
 
-**Verdict:** `PR101_PRODUCTION_READONLY_PASS`  
+**Verdict:** `B2B_LEDGER_MERGE_PASS`  
 **Date:** 2026-06-13  
-**Merge archive:** reports/2026-06-13-1705-pr101-execution-requirement-merge.md  
-**Spot-check archive:** reports/2026-06-13-1010-pr101-production-readonly-spotcheck.md  
-**Production commit:** `b5ea81d11a588434a1321838aecafd76821f624a`
+**Merge archive:** reports/2026-06-13-1211-pr102-b2b-ledger-merge.md  
+**Production commit:** `3463a4470d0f66b6fd9f10bd7c72d469110e0282`
 
 ## Summary
 
-- PR #101 is merged and deployed to production.
-- Attorney intake now requires execution requirement before applicant invite.
-- Options: Electronic signature / declaration and Notarized affidavit.
-- No silent default; radio is blank by default.
-- Invite applicant remains disabled until attorney selects one.
-- Applicant/witness cannot choose or override this requirement.
-- Provider integration remains separate; no Proof/provider calls.
-- Production read-only spot-check passed with attorney-demo.
-- No production invites, emails, payments, providers, or mutations during spot-check.
-- Next operational blocker: B2B pilot usage ledger.
+- PR #102 adds minimal B2B pilot usage ledger for attorney-approved firm-linked support statements.
+- Migration 118 added but not applied to production.
+- `B2B_USAGE_LEDGER_ENABLED` remains false.
+- Production behavior unchanged until migration + env enablement.
+- No Stripe, invoices, payments, emails, or provider calls.
+- Next step: dev/staging migration smoke, then separate production rollout decision.
 
 ## Merge outcome
 
 | Field | Value |
 |-------|--------|
-| PR | https://github.com/LuckyEu/affidavit-support-network/pull/101 |
-| Squash merge commit | `b5ea81d11a588434a1321838aecafd76821f624a` |
-| Merged at | 2026-06-13T17:01:47Z |
+| PR | https://github.com/LuckyEu/affidavit-support-network/pull/102 |
+| Squash merge commit | `3463a4470d0f66b6fd9f10bd7c72d469110e0282` |
+| Merged at | 2026-06-13T19:09:35Z |
 | Pre-merge CI | Build + Unit/Functional/Regression PASS |
-| Scope | 32 files — executionRequirement module, intake-links UI, workflow snapshot, API guards, copy/tests |
-| Dependency | PR #100 merged (`a8b963e8`) |
+| Scope | 9 files — migration 118, usageEvents module, attorney approval integration, admin read API, tests |
+| Dependency | PR #101 merged (`b5ea81d1`) |
+
+## What shipped
+
+| Component | Notes |
+|-----------|--------|
+| `b2b_usage_events` table (migration 118) | Append-only pilot facts; unique `(affidavit_request_id, event_type)` |
+| Attorney approval hook | Records `statement_approved` for firm-supervised approvals only |
+| Kill switch | `B2B_USAGE_LEDGER_ENABLED === 'true'` required; default off |
+| Admin API | `GET /api/admin/b2b/usage-events` — read-only, sanitized metadata |
+| Idempotency | `ON CONFLICT DO NOTHING` on duplicate approval |
+
+**Not included:** Stripe/payment/invoice, providers, pricing, backfill scripts, emails.
 
 ## Production identity
 
 | Field | Value |
 |-------|--------|
-| commit | `b5ea81d11a588434a1321838aecafd76821f624a` |
+| commit | `3463a4470d0f66b6fd9f10bd7c72d469110e0282` |
 | ref | `main` |
 | env | `production` |
 | dbHost fingerprint | `ep-super-king-afqr3kxf` |
 
-Deploy confirmed after merge via `/api/build-info`.
+Code deploy confirmed via `/api/build-info` after merge.
 
-## Production read-only spot-check (I-130)
+## Production rollout status
 
-| Check | Result |
+| Item | Status |
+|------|--------|
+| Migration 118 applied to production | **No** |
+| `b2b_usage_events` table on production | **Absent** |
+| `B2B_USAGE_LEDGER_ENABLED` on production | **Not set / false** |
+| Ledger writes on production | **None expected** |
+| Historical approval backfill | **Not performed** |
+
+## Kill-switch safety
+
+| Check | Status |
 |-------|--------|
-| Execution requirement radio visible | PASS |
-| No option selected by default | PASS |
-| Invite disabled until selection | PASS |
-| Helper copy (firm decides after attorney review) | PASS |
-| Electronic signature / declaration option | PASS |
-| Notarized affidavit option | PASS |
-| Declaration path enables Invite (valid email + link; not clicked) | PASS |
-| Notarized path enables Invite (valid email + link; not clicked) | PASS |
-| No submit / email / mutation | PASS |
+| Flag off → no ledger insert | PASS |
+| Flag off → table not required for approval | PASS |
+| Metadata privacy allowlist | PASS |
+| No billing/charge behavior | PASS |
+| Admin `/admin/b2b` page does not fetch usage events | PASS |
 
 ## Safety
 
 | Constraint | Status |
 |------------|--------|
-| Read-only UI spot-check | PASS |
-| inviteSent | false |
-| providerCalls | false |
-| payments | false |
+| No production migration apply | PASS |
+| No production env enablement | PASS |
+| No backfill | PASS |
+| No Stripe/invoices/providers/emails | PASS |
 | secrets printed | none |
 
 ## Prior milestones
 
+- PR #101: attorney execution requirement live on production
+- PR #100: firm-linked intake links foundation
 - PR #99: stale signature-prep / PDF delivery guard
-- PR #97: BFM declaration quality
-- PR #96/#98: firm-linked attorney review queue and review actions
 
 Synthetic demo · Not legal advice.
