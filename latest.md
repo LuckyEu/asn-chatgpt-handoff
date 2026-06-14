@@ -1,54 +1,62 @@
-# Latest — Attorney workspace state consistency PASS after PR #105
+# Latest — Attorney review decisions unified in review workspace — PR #107
 
-**Verdict:** `ATTORNEY_STATE_CONSISTENCY_PRODUCTION_PASS`  
+**Verdict:** `PR107_PRODUCTION_READONLY_PASS`  
 **Date:** 2026-06-14  
-**Merge archive:** reports/2026-06-14-0910-pr105-case-detail-approved-pdf-state-merge.md  
-**Production spot-check archive:** reports/2026-06-14-0912-attorney-state-consistency-after-pr105.md  
-**Production commit (spot-check):** `e7968c8b7387e1954adcb738c0f897016f3a3081`
+**Merge archive:** reports/2026-06-14-1149-pr107-attorney-review-single-workspace-merge.md  
+**Production spot-check archive:** reports/2026-06-14-1154-pr107-production-single-workspace-spotcheck.md  
+**Production commit:** `f654fb06ec82d96d812fe308f84ff858e1c05095`
 
 ## Summary
 
-- PR #105 merged and deployed to production.
-- Case detail API now includes attorney approval, signature preparation, and PDF-sent state on support statement rows.
-- Controlled fixture (Emily Dental case, witness Joe Average) reads as **APPROVED_PDF_SENT** consistently across `/attorney/cases`, `/attorney/tasks`, `/attorney/cases/[caseId]`, and `/attorney/review/[requestId]`.
-- Case detail no longer shows awaiting review or “Review Joe Average's statement” when approval and PDF-sent fields are present on legacy SUBMITTED rows.
-- No production writes, approvals, revisions, emails, signing, provider calls, payments, or B2B ledger rollout occurred during spot-check.
-- PR #106 (agent hygiene rules) merged separately — **not** published as product latest (meta/rules-only).
-- **Next operational decision:** B2B ledger production rollout (still paused).
+- PR #107 merged and production read-only spot-check passed.
+- `/attorney/review/[requestId]` is the only attorney decision workspace.
+- Case detail and intake progress no longer show inline approve/revision controls.
+- Those surfaces route to **Review statement** / **View statement** instead.
+- The review page keeps statement text, review process record, statement history, revision reasons, and approve/revision controls together.
+- Process record panel renamed to **Review process record** with subtitle clarifying it is not the statement text.
+- No production approvals, revisions, emails, signing, payments, providers, or B2B ledger rollout occurred during spot-check.
+- **Next operational decision:** B2B ledger production rollout or first review-ready draft artifact spec.
 
-## Merge outcome (PR #105)
+## Merge outcome (PR #107)
 
 | Field | Value |
 |-------|--------|
-| PR | https://github.com/LuckyEu/affidavit-support-network/pull/105 |
-| Squash commit | `e7968c8b` |
-| Scope | Case GET payload + case detail workspace state alignment + regression tests |
+| PR | https://github.com/LuckyEu/affidavit-support-network/pull/107 |
+| Squash commit | `f654fb06` |
+| Scope | Option A — single attorney decision workspace (case detail + intake progress demoted to links) |
 | CI | Build and Test, Unit/Functional/Regression, Vercel — pass |
 
-### Key fix
+### Key change
 
-- Canonical affidavit_requests overlay now merges `attorneyApprovedAt`, `signaturePreparation`, and related attorney workflow fields onto case detail rows.
-- Case detail row-action logic prioritizes approved/PDF-sent workflow state over raw legacy `SUBMITTED` status.
+- Removed inline `RequestRevisionForm`, Approve, and Request revision from case detail and intake progress drawer.
+- Added Review statement links with `returnTo=case` and `returnTo=intake-links`.
+- Review page **Attorney decision** section is the sole approve/revision surface when actions are allowed.
+- APIs and authorization unchanged.
 
 ## Production spot-check (read-only)
 
+Controlled fixture: Emily Dental + Daniel Reed · `I130_BONAFIDE_MARRIAGE` · witness Joe Average · **approved + PDF sent**.
+
 | Surface | Result |
 |---------|--------|
-| `/attorney/cases` | PASS — human I-130 label; no awaiting review |
-| `/attorney/tasks` | PASS — witness not in review queue |
-| `/attorney/cases/[caseId]` | PASS — no awaiting review (was FAIL before PR #105) |
-| `/attorney/review/[requestId]` | PASS — Approved; PDF sent; clean history |
+| `/attorney/cases/[caseId]` | PASS — no inline controls; View statement → review with `returnTo=case` |
+| `/attorney/intake-links` progress | PASS — no inline controls; Review statement + Open case; helper copy present |
+| `/attorney/tasks` | PASS — empty queue; no inline controls |
+| `/attorney/review/[requestId]` | PASS — [statement text present]; Review process record; decision section hidden for approved Joe |
 
-**Controlled witness state:** legacy `SUBMITTED` + attorney approved + PDF sent + manual-signature-ready prep → classified **APPROVED_PDF_SENT**.
+Pending-state inline-control absence confirmed by PR #107 unit tests (no pending production fixture created).
+
+## Prior milestones (context)
+
+- PR #105: attorney workspace state consistency (case detail approved/PDF-sent alignment) — superseded for latest UX by PR #107.
+- PR #106: agent hygiene rules (meta/rules-only; not a product handoff milestone).
 
 ## Out of scope (confirmed)
 
-- Payments / Stripe
-- Provider / notary / signing automation
-- B2B ledger production enablement
+- B2B ledger production enablement (still paused)
 - Production data mutation
-- PR #106 hygiene rules (local agent discipline only)
+- Payments / Stripe / providers / signing automation
 
 ## Safety
 
-Read-only production verification only. No secrets, tokens, magic links, statement text, ID data, or PDF bytes in handoff archives.
+Read-only production verification only. No secrets, tokens, magic links, full statement text, ID data, or PDF bytes in handoff archives.
