@@ -1,62 +1,54 @@
-# Latest — Attorney review decisions unified in review workspace — PR #107
+# Latest — First review-ready draft artifact spec ready
 
-**Verdict:** `PR107_PRODUCTION_READONLY_PASS`  
+**Verdict:** `FIRST_REVIEW_READY_DRAFT_SPEC_READY`  
 **Date:** 2026-06-14  
-**Merge archive:** reports/2026-06-14-1149-pr107-attorney-review-single-workspace-merge.md  
-**Production spot-check archive:** reports/2026-06-14-1154-pr107-production-single-workspace-spotcheck.md  
-**Production commit:** `f654fb06ec82d96d812fe308f84ff858e1c05095`
+**Archive:** reports/2026-06-14-1207-first-review-ready-draft-artifact-spec.md  
+**Production commit (unchanged):** `f654fb06ec82d96d812fe308f84ff858e1c05095`
 
 ## Summary
 
-- PR #107 merged and production read-only spot-check passed.
-- `/attorney/review/[requestId]` is the only attorney decision workspace.
-- Case detail and intake progress no longer show inline approve/revision controls.
-- Those surfaces route to **Review statement** / **View statement** instead.
-- The review page keeps statement text, review process record, statement history, revision reasons, and approve/revision controls together.
-- Process record panel renamed to **Review process record** with subtitle clarifying it is not the statement text.
-- No production approvals, revisions, emails, signing, payments, providers, or B2B ledger rollout occurred during spot-check.
-- **Next operational decision:** B2B ledger production rollout or first review-ready draft artifact spec.
+- Spec defines `first_review_ready_draft` as the first immutable review-ready statement snapshot before attorney approval.
+- It is not autosave, raw answers, approved text, or PDF.
+- Planned artifact kinds: `first_review_ready_draft`, `revision_review_ready_draft`, `approved_version`.
+- Intended UX placement is inside `/attorney/review/[requestId]`, not a separate report route.
+- B2B ledger should count attorney approval only; snapshot creation does not count.
+- PDF generation should later source from `approved_version`.
+- No product code, migrations, production writes, emails, or artifacts were changed.
+- **Next operational decision:** implement Phase 1 snapshots or defer and return to B2B ledger production rollout.
 
-## Merge outcome (PR #107)
+## Artifact definition (concise)
 
-| Field | Value |
-|-------|--------|
-| PR | https://github.com/LuckyEu/affidavit-support-network/pull/107 |
-| Squash commit | `f654fb06` |
-| Scope | Option A — single attorney decision workspace (case detail + intake progress demoted to links) |
-| CI | Build and Test, Unit/Functional/Regression, Vercel — pass |
+| Kind | When |
+|------|------|
+| `first_review_ready_draft` | First witness submit for attorney review (one per request, ever) |
+| `revision_review_ready_draft` | Each resubmit after attorney revision (v2+) |
+| `approved_version` | Attorney approval event |
 
-### Key change
+Trigger: witness passes final review + DraftGate; normalized statement persisted; author-control and case-type checks recorded — **before** attorney decision and PDF prep.
 
-- Removed inline `RequestRevisionForm`, Approve, and Request revision from case detail and intake progress drawer.
-- Added Review statement links with `returnTo=case` and `returnTo=intake-links`.
-- Review page **Attorney decision** section is the sole approve/revision surface when actions are allowed.
-- APIs and authorization unchanged.
+## Current product gap
 
-## Production spot-check (read-only)
+Today only mutable `affidavit_versions.final_letter_text` on the latest row exists. Statement history timeline is derived from DB timestamps; `firstReviewReadyDraftCreated` label is reserved but not yet backed by persisted snapshots.
 
-Controlled fixture: Emily Dental + Daniel Reed · `I130_BONAFIDE_MARRIAGE` · witness Joe Average · **approved + PDF sent**.
+## Implementation phases (planned)
 
-| Surface | Result |
-|---------|--------|
-| `/attorney/cases/[caseId]` | PASS — no inline controls; View statement → review with `returnTo=case` |
-| `/attorney/intake-links` progress | PASS — no inline controls; Review statement + Open case; helper copy present |
-| `/attorney/tasks` | PASS — empty queue; no inline controls |
-| `/attorney/review/[requestId]` | PASS — [statement text present]; Review process record; decision section hidden for approved Joe |
+| Phase | Scope |
+|-------|-------|
+| 1 | Table/model; snapshot on submit/resubmit; display in statement history |
+| 2 | Diff/compare versions; quality flag display; source answer section links |
+| 3 | `approved_version` as PDF source; ledger references approved_version id |
 
-Pending-state inline-control absence confirmed by PR #107 unit tests (no pending production fixture created).
+## Prior milestone (context)
 
-## Prior milestones (context)
-
-- PR #105: attorney workspace state consistency (case detail approved/PDF-sent alignment) — superseded for latest UX by PR #107.
-- PR #106: agent hygiene rules (meta/rules-only; not a product handoff milestone).
+- PR #107: attorney review single decision workspace — `/attorney/review/[requestId]` is the sole approve/revision surface; case detail and intake progress link out only.
 
 ## Out of scope (confirmed)
 
+- Product implementation of snapshots (Phase 1 not started)
 - B2B ledger production enablement (still paused)
 - Production data mutation
 - Payments / Stripe / providers / signing automation
 
 ## Safety
 
-Read-only production verification only. No secrets, tokens, magic links, full statement text, ID data, or PDF bytes in handoff archives.
+Design/spec pass only. No secrets, tokens, magic links, full statement text, ID data, or PDF bytes in handoff archives.
