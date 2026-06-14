@@ -1,54 +1,56 @@
-# Latest — First review-ready draft artifact spec ready
+# Latest — First review-ready snapshots merged; production enablement pending
 
-**Verdict:** `FIRST_REVIEW_READY_DRAFT_SPEC_READY`  
+**Verdict:** `FIRST_REVIEW_READY_SNAPSHOTS_MERGED`  
 **Date:** 2026-06-14  
-**Archive:** reports/2026-06-14-1207-first-review-ready-draft-artifact-spec.md  
-**Production commit (unchanged):** `f654fb06ec82d96d812fe308f84ff858e1c05095`
+**Production commit:** `a5aab1dd8874ef7f8de2be0a8ac4a527ea4acdbe`  
+**Archives:**
+- reports/2026-06-14-1610-snapshot-timeline-sanitizer-merge.md (PR #109)
+- reports/2026-06-14-1449-pr108-first-review-ready-snapshots-merge.md (PR #108)
 
 ## Summary
 
-- Spec defines `first_review_ready_draft` as the first immutable review-ready statement snapshot before attorney approval.
-- It is not autosave, raw answers, approved text, or PDF.
-- Planned artifact kinds: `first_review_ready_draft`, `revision_review_ready_draft`, `approved_version`.
-- Intended UX placement is inside `/attorney/review/[requestId]`, not a separate report route.
-- B2B ledger should count attorney approval only; snapshot creation does not count.
-- PDF generation should later source from `approved_version`.
-- No product code, migrations, production writes, emails, or artifacts were changed.
-- **Next operational decision:** implement Phase 1 snapshots or defer and return to B2B ledger production rollout.
+- PR #108 adds `first_review_ready_draft` and `revision_review_ready_draft` snapshot support behind `STATEMENT_REVIEW_SNAPSHOTS_ENABLED`.
+- PR #109 fixes statement timeline sanitizer so snapshot timeline metadata does not expose or trip on `statementTextHash`.
+- Production code is deployed, but migration 119 is not applied.
+- `STATEMENT_REVIEW_SNAPSHOTS_ENABLED` remains off in production.
+- No production snapshots are expected yet.
+- Before production enablement: re-run dev/staging smoke on current main, then apply migration 119 and enable the flag only with operator approval.
+- B2B ledger production rollout remains separate.
 
-## Artifact definition (concise)
+## Milestones
 
-| Kind | When |
-|------|------|
-| `first_review_ready_draft` | First witness submit for attorney review (one per request, ever) |
-| `revision_review_ready_draft` | Each resubmit after attorney revision (v2+) |
-| `approved_version` | Attorney approval event |
+| Milestone | Verdict | Merge commit |
+|-----------|---------|--------------|
+| PR #108 — first/revision review-ready snapshots (Phase 1) | `PR108_MERGE_PASS` | `39e2ef22` |
+| PR #109 — timeline sanitizer for snapshot metadata | `SNAPSHOT_TIMELINE_SANITIZER_MERGE_PASS` | `a5aab1dd` |
 
-Trigger: witness passes final review + DraftGate; normalized statement persisted; author-control and case-type checks recorded — **before** attorney decision and PDF prep.
+## Phase 1 scope (merged)
 
-## Current product gap
+- Migration 119 + `MIGRATION_ORDER.md` entry (dev/staging applied during pre-merge smoke; **not** on production)
+- Snapshot create on witness submit/resubmit when flag enabled (attorney-blocking prepare-for-signature path)
+- Attorney snapshots API + Statement history UI integration
+- Kill switch: `STATEMENT_REVIEW_SNAPSHOTS_ENABLED` — default **off**
 
-Today only mutable `affidavit_versions.final_letter_text` on the latest row exists. Statement history timeline is derived from DB timestamps; `firstReviewReadyDraftCreated` label is reserved but not yet backed by persisted snapshots.
+## Production status (read-only)
 
-## Implementation phases (planned)
+| Item | Status |
+|------|--------|
+| Migration 119 on production | **Not applied** |
+| `STATEMENT_REVIEW_SNAPSHOTS_ENABLED` | **Off** |
+| Production snapshot rows | **None expected** |
+| B2B ledger production | **Still separate / not enabled** |
 
-| Phase | Scope |
-|-------|-------|
-| 1 | Table/model; snapshot on submit/resubmit; display in statement history |
-| 2 | Diff/compare versions; quality flag display; source answer section links |
-| 3 | `approved_version` as PDF source; ledger references approved_version id |
+## Next operational step
 
-## Prior milestone (context)
-
-- PR #107: attorney review single decision workspace — `/attorney/review/[requestId]` is the sole approve/revision surface; case detail and intake progress link out only.
+`first_review_ready_snapshots_dev_smoke_after_sanitizer` — re-run dev/staging smoke on current main, then coordinate production migration 119 + flag enablement with operator approval only.
 
 ## Out of scope (confirmed)
 
-- Product implementation of snapshots (Phase 1 not started)
-- B2B ledger production enablement (still paused)
-- Production data mutation
+- Production migration apply or env changes (this handoff pass)
+- B2B ledger production rollout
 - Payments / Stripe / providers / signing automation
+- PDF sourcing from snapshots / `approved_version` (later phase)
 
 ## Safety
 
-Design/spec pass only. No secrets, tokens, magic links, full statement text, ID data, or PDF bytes in handoff archives.
+Handoff archives are redacted Markdown only. No secrets, tokens, magic links, full statement text, ID data, or PDF bytes.
