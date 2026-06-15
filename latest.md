@@ -1,56 +1,70 @@
-# Latest — First review-ready snapshots merged; production enablement pending
+# Latest — Statement review snapshots enabled in production; smoke pending
 
-**Verdict:** `FIRST_REVIEW_READY_SNAPSHOTS_MERGED`  
-**Date:** 2026-06-14  
-**Production commit:** `a5aab1dd8874ef7f8de2be0a8ac4a527ea4acdbe`  
+**Verdict:** `STATEMENT_REVIEW_SNAPSHOTS_SCHEMA_ENV_ROLLOUT_PASS` · `STATEMENT_REVIEW_SNAPSHOTS_PRODUCTION_READONLY_PASS`  
+**Date:** 2026-06-15  
 **Archives:**
-- reports/2026-06-14-1610-snapshot-timeline-sanitizer-merge.md (PR #109)
-- reports/2026-06-14-1449-pr108-first-review-ready-snapshots-merge.md (PR #108)
+- reports/2026-06-15-0749-statement-review-snapshots-production-schema-env-rollout.md
+- reports/2026-06-15-0813-statement-review-snapshots-production-readonly-sanity.md
 
 ## Summary
 
-- PR #108 adds `first_review_ready_draft` and `revision_review_ready_draft` snapshot support behind `STATEMENT_REVIEW_SNAPSHOTS_ENABLED`.
-- PR #109 fixes statement timeline sanitizer so snapshot timeline metadata does not expose or trip on `statementTextHash`.
-- Production code is deployed, but migration 119 is not applied.
-- `STATEMENT_REVIEW_SNAPSHOTS_ENABLED` remains off in production.
-- No production snapshots are expected yet.
-- Before production enablement: re-run dev/staging smoke on current main, then apply migration 119 and enable the flag only with operator approval.
-- B2B ledger production rollout remains separate.
+- Migrations 118 and 119 were applied to production.
+- `statement_review_snapshots` schema is live.
+- `STATEMENT_REVIEW_SNAPSHOTS_ENABLED=true` on production.
+- `B2B_USAGE_LEDGER_ENABLED` remains off.
+- `b2b_usage_events` and `statement_review_snapshots` have 0 rows; no backfill.
+- Existing attorney review pages/API remain stable with no snapshot rows.
+- No production snapshot smoke data was created.
+- No emails, payments, providers, approvals, revisions, or PDF prep occurred.
+- Next optional step: controlled production snapshot smoke.
 
-## Milestones
-
-| Milestone | Verdict | Merge commit |
-|-----------|---------|--------------|
-| PR #108 — first/revision review-ready snapshots (Phase 1) | `PR108_MERGE_PASS` | `39e2ef22` |
-| PR #109 — timeline sanitizer for snapshot metadata | `SNAPSHOT_TIMELINE_SANITIZER_MERGE_PASS` | `a5aab1dd` |
-
-## Phase 1 scope (merged)
-
-- Migration 119 + `MIGRATION_ORDER.md` entry (dev/staging applied during pre-merge smoke; **not** on production)
-- Snapshot create on witness submit/resubmit when flag enabled (attorney-blocking prepare-for-signature path)
-- Attorney snapshots API + Statement history UI integration
-- Kill switch: `STATEMENT_REVIEW_SNAPSHOTS_ENABLED` — default **off**
-
-## Production status (read-only)
+## Production status
 
 | Item | Status |
 |------|--------|
-| Migration 119 on production | **Not applied** |
-| `STATEMENT_REVIEW_SNAPSHOTS_ENABLED` | **Off** |
-| Production snapshot rows | **None expected** |
-| B2B ledger production | **Still separate / not enabled** |
+| Migration 118 (`b2b_usage_events`) | **Applied** — schema only, 0 rows |
+| Migration 119 (`statement_review_snapshots`) | **Applied** — 0 rows |
+| `STATEMENT_REVIEW_SNAPSHOTS_ENABLED` | **On** (Production) |
+| `B2B_USAGE_LEDGER_ENABLED` | **Off** (not set) |
+| Production snapshot rows | **0** |
+| B2B usage event rows | **0** |
+| Backfill | **None** |
+| dbHost fingerprint | `ep-super-king-afqr3kxf` |
+
+## Read-only sanity (post-enablement)
+
+Controlled fixture: Emily Dental + Daniel Reed · witness Joe Average · request prefix `f15df8e5`.
+
+| Check | Result |
+|-------|--------|
+| Attorney review page loads | **Pass** |
+| Statement history (no infinite loading) | **Pass** |
+| Timeline API | **200** — empty `reviewReadySnapshots`, no sanitizer errors |
+| Snapshot API | **200** — `{ snapshots: [] }` |
+| Fake snapshot labels | **None** |
+| Row counts after checks | **Unchanged (0)** |
+
+## Milestones (code → production enablement)
+
+| Milestone | Verdict |
+|-----------|---------|
+| PR #108 — first/revision review-ready snapshots | `PR108_MERGE_PASS` |
+| PR #109 — timeline sanitizer | `SNAPSHOT_TIMELINE_SANITIZER_MERGE_PASS` |
+| Production dry-run (118 + 119 pending) | `SNAPSHOT_PROD_DRY_RUN_118_119_PENDING` |
+| Production schema/env rollout | `STATEMENT_REVIEW_SNAPSHOTS_SCHEMA_ENV_ROLLOUT_PASS` |
+| Production read-only sanity | `STATEMENT_REVIEW_SNAPSHOTS_PRODUCTION_READONLY_PASS` |
 
 ## Next operational step
 
-`first_review_ready_snapshots_dev_smoke_after_sanitizer` — re-run dev/staging smoke on current main, then coordinate production migration 119 + flag enablement with operator approval only.
+`optional_controlled_statement_snapshot_smoke` — witness submit/resubmit on a controlled production case to create the first snapshot row; requires separate operator approval. Not run in enablement or sanity passes.
 
 ## Out of scope (confirmed)
 
-- Production migration apply or env changes (this handoff pass)
-- B2B ledger production rollout
+- B2B ledger production enablement
+- Historical snapshot backfill
 - Payments / Stripe / providers / signing automation
-- PDF sourcing from snapshots / `approved_version` (later phase)
+- Production emails / invites / approvals / revisions
 
 ## Safety
 
-Handoff archives are redacted Markdown only. No secrets, tokens, magic links, full statement text, ID data, or PDF bytes.
+Handoff archives are redacted Markdown only. No secrets, tokens, magic links, DATABASE_URL, full statement text, ID data, or PDF bytes.
